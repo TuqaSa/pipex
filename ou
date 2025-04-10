@@ -1,0 +1,17 @@
+command.c$
+command.o$
+file$
+infile$
+Libs$
+Makefile$
+ou$
+out$
+parsing.c$
+parsing.o$
+pipe.c$
+pipe.o$
+pipex$
+pipex.c$
+pipex.h$
+pipex.o$
+test_pipex.sh$

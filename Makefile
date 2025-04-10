@@ -1,11 +1,11 @@
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 SRC = pipex.c parsing.c pipe.c command.c
 OBJ = $(SRC:.c=.o)
 
-LIBFT_PATH = ./Libft
+LIBFT_PATH = ./Libs
 LIBFT = $(LIBFT_PATH)/libft.a
-INCLUDES = -I$(LIBFT_PATH)
+INCLUDES = -I $(LIBFT_PATH)/include
 
 NAME = pipex
 all: $(NAME)

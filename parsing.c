@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tsaeed <tsaeed@student.42amman.com>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/10 14:57:18 by tsaeed            #+#    #+#             */
+/*   Updated: 2025/04/10 18:34:49 by tsaeed           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 void	free_tokens(char **tokens)
@@ -39,14 +51,11 @@ char	**split_command(const char *cmd)
 
 char	*find_command_path(const char *cmd)
 {
-	char			*result;
-	int				i;
-	const char		*paths[] = {
-		"/bin/",
-		"/usr/bin/",
-		"/usr/local/bin/",
-		NULL};
-
+	char		*result;
+	int			i;
+	const char	*paths[] = {"/bin/", "/usr/bin/", "/usr/local/bin/", NULL};
+	if(cmd == NULL)
+		return(NULL);
 	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
 	result = malloc(MAX_PATH);
@@ -81,19 +90,20 @@ void	free_args(char **args)
 
 void	check_args(int argc, char **argv)
 {
+	(void)argv;
 	if (argc != 5)
 	{
 		write(STDERR_FILENO, "Usage: ./pipex infile cmd1 cmd2 outfile\n", 40);
 		exit(EXIT_FAILURE);
 	}
-	if (access(argv[1], F_OK) == -1)
-	{
-		printf("%s : No such file or directory", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	if (access(argv[1], R_OK) == -1)
-	{
-		printf("%s : Permission denied", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+	// if (access(argv[1], F_OK) == -1)
+	// {
+	// 	ft_printf("%s : No such file or directory\n", argv[1]);
+	// 	exit(EXIT_FAILURE);
+	// }
+	// if (access(argv[1], R_OK) == -1)
+	// {
+	// 	ft_printf("%s : Permission denied\n", argv[1]);
+	// 	exit(EXIT_FAILURE);
+	// }
 }
