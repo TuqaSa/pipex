@@ -6,7 +6,7 @@
 /*   By: tsaeed <tsaeed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:57:13 by tsaeed            #+#    #+#             */
-/*   Updated: 2025/04/10 19:15:02 by tsaeed           ###   ########.fr       */
+/*   Updated: 2025/04/12 18:20:13 by tsaeed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int	check_cmd(t_cmd *cmd)
 {
 	if (cmd->path == NULL)
 	{
-		// ft_printf("Command not found: %s\n", cmd->args[0]);
-		write(2, "Command not found: \n", ft_strlen("Command not found: \n"));
-		write(2, cmd->args[0], ft_strlen(cmd->args[0]));
-		write(2, "\n", ft_strlen("\n"));
+		print_error("Error ", "Command not found: \n", cmd->args[0]);
 		return (-1);
 	}
 	return (0);

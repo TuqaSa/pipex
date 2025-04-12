@@ -1,6 +1,6 @@
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g
-SRC = pipex.c parsing.c pipe.c command.c
+SRC = pipex.c parsing.c pipe.c command.c utls.c
 OBJ = $(SRC:.c=.o)
 
 LIBFT_PATH = ./Libs

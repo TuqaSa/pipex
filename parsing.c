@@ -6,7 +6,7 @@
 /*   By: tsaeed <tsaeed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 14:57:18 by tsaeed            #+#    #+#             */
-/*   Updated: 2025/04/10 18:34:49 by tsaeed           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:15:03 by tsaeed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ char	**split_command(const char *cmd)
 	char	**tokens;
 	int		i;
 
-	args = malloc(MAX_ARGS * sizeof(char *));
-	if (!args)
-		exit(EXIT_FAILURE);
+	args = safe_malloc(MAX_ARGS * sizeof(char *));
 	ft_strlcpy(cmd_copy, cmd, MAX_PATH);
 	tokens = ft_split(cmd_copy, ' ');
 	if (!tokens)
@@ -39,9 +37,7 @@ char	**split_command(const char *cmd)
 	i = 0;
 	while (tokens[i] != NULL && i < MAX_ARGS - 1)
 	{
-		args[i] = strdup(tokens[i]);
-		if (!args[i])
-			exit(EXIT_FAILURE);
+		args[i] = safe_strdup(tokens[i]);
 		i++;
 	}
 	args[i] = NULL;
@@ -54,13 +50,12 @@ char	*find_command_path(const char *cmd)
 	char		*result;
 	int			i;
 	const char	*paths[] = {"/bin/", "/usr/bin/", "/usr/local/bin/", NULL};
-	if(cmd == NULL)
-		return(NULL);
+
+	if (cmd == NULL)
+		return (NULL);
 	if (access(cmd, X_OK) == 0)
-		return (ft_strdup(cmd));
-	result = malloc(MAX_PATH);
-	if (!result)
-		exit(EXIT_FAILURE);
+		return (safe_strdup(cmd));
+	result = safe_malloc(MAX_PATH);
 	i = 0;
 	while (paths[i] != NULL)
 	{
@@ -96,14 +91,4 @@ void	check_args(int argc, char **argv)
 		write(STDERR_FILENO, "Usage: ./pipex infile cmd1 cmd2 outfile\n", 40);
 		exit(EXIT_FAILURE);
 	}
-	// if (access(argv[1], F_OK) == -1)
-	// {
-	// 	ft_printf("%s : No such file or directory\n", argv[1]);
-	// 	exit(EXIT_FAILURE);
-	// }
-	// if (access(argv[1], R_OK) == -1)
-	// {
-	// 	ft_printf("%s : Permission denied\n", argv[1]);
-	// 	exit(EXIT_FAILURE);
-	// }
 }
