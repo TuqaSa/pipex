@@ -6,7 +6,7 @@
 /*   By: tsaeed <tsaeed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 17:07:23 by tsaeed            #+#    #+#             */
-/*   Updated: 2025/04/12 16:37:34 by tsaeed           ###   ########.fr       */
+/*   Updated: 2025/04/12 19:16:41 by tsaeed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ void		init_cmd(t_cmd *cmd, const char *cmd_str);
 void		cleanup_cmd(t_cmd *cmd);
 int			check_cmd(t_cmd *cmd);
 void		execute_cmd(t_cmd *cmd, int in_fd, int out_fd, char **envp);
-void		init_pipe(int *pipefd);
-int			first_cmd(char **argv, int *pipefd, char **envp, t_cmd *cmd1);
+void		init_pipe(int *pipefd, t_cmd *cmd1, t_cmd *cmd2);
 int			second_cmd(char **argv, int *pipefd, char **envp, t_cmd *cmd2);
 void		close_pipe(int *pipefd);
 void		*safe_malloc(size_t size);
 char		*safe_strdup(const char *s);
 void		print_error(const char *prefix, const char *message,
 				const char *suffix);
+void		init(t_cmd *cmd);
+int			first_cmd_setup(char **argv, int *pipefd, char **envp, t_cmd *cmd1);
 
 #endif
